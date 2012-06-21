@@ -29,7 +29,7 @@ abstract class DataModel
 
     function __set($prop, $val) {
         if (!isset(static::$_schema[$prop])) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException($prop.'はセットできません');
         }
 
         $schema = static::$_schema[$prop];
@@ -49,7 +49,7 @@ abstract class DataModel
             return;
         }
 
-        switch ($type) {
+        switch ($schema) {
             case self::BOOLEAN:
                 return $this->_data[$prop] = (bool)$val;
             case self::INTEGER:

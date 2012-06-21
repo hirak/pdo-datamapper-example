@@ -15,13 +15,13 @@ class EntryMapper extends DataMapper
         $modelClass = self::MODEL_CLASS;
 
         $stmt = $pdo->prepare('
-            INSERT INTO Entry(author, title, content, updated)
+            INSERT INTO Entry(author, title, content, published)
             VALUES (?, ?, ?, ?)
         ');
         $stmt->bindParam(1, $author,  PDO::PARAM_STR);
         $stmt->bindParam(2, $title,   PDO::PARAM_STR);
         $stmt->bindParam(3, $content, PDO::PARAM_STR);
-        $stmt->bindParam(4, $updated, PDO::PARAM_STR);
+        $stmt->bindParam(4, $published, PDO::PARAM_STR);
 
         if (! is_array($data)) {
             $data = array($data);
@@ -33,7 +33,7 @@ class EntryMapper extends DataMapper
             $author  = $row->author;
             $title   = $row->title;
             $content = $row->content;
-            $updated = $row->updated->format('c');
+            $published = $row->published->format('c');
             $stmt->execute();
 
             //autoincrementな主キーをオブジェクト側へ反映
@@ -50,13 +50,13 @@ class EntryMapper extends DataMapper
                SET author = ?
                  , title = ?
                  , content = ?
-                 , updated = ?
+                 , published = ?
              WHERE entryId = ?
         ');
         $stmt->bindParam(1, $author,  PDO::PARAM_STR);
         $stmt->bindParam(2, $title,   PDO::PARAM_STR);
         $stmt->bindParam(3, $content, PDO::PARAM_STR);
-        $stmt->bindParam(4, $updated, PDO::PARAM_STR);
+        $stmt->bindParam(4, $published, PDO::PARAM_STR);
         $stmt->bindParam(5, $entryId, PDO::PARAM_INT);
 
         if (! is_array($data)) {
@@ -70,7 +70,7 @@ class EntryMapper extends DataMapper
             $author  = $row->author;
             $title   = $row->title;
             $content = $row->content;
-            $updated = $row->updated->format('c');
+            $published = $row->published->format('c');
             $stmt->execute();
         }
     }

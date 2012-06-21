@@ -2,7 +2,7 @@
 /**
  * ブログ記事一つを表すモデル
  *
- *
+ * @group model
  */
 class Entry extends DataModel
 {

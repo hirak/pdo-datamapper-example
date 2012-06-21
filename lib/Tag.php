@@ -9,6 +9,11 @@ class Tag extends DataModel
         'tag'   => parent::STRING
     );
 
+    //new Tag('おもしろ')など、コンストラクタで初期化できるようにする
+    function __construct($default=null) {
+        $this->tag = $default;
+    }
+
     function __toString() {
         return (string) $this->tag;
     }
