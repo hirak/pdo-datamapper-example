@@ -10,7 +10,7 @@ abstract class DataMapper
 
     protected function _decorate(PDOStatement $stmt)
     {
-        $stmt->setFetchMode(PDO::FETCH_CLASS, static::MODEL_CLASS);
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, static::MODEL_CLASS);
         return $stmt;
     }
 }
